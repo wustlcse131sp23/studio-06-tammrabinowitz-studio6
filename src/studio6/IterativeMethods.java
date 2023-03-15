@@ -14,9 +14,16 @@ public class IterativeMethods {
 	 */
 	public static double geometricSum(int n) {
 		double sum = 0.0;
-		for (int power = 1; power <= n; ++power) {
-			sum = sum + Math.pow(0.5, power);
+		if (n > 0)
+		{
+			sum += Math.pow(0.5, n) + geometricSum(n-1);
+			//System.out.println(sum);
 		}
+		//sum += Math.pow(0.5, n) + geometricSum(--n);
+		
+		//for (int power = 1; power <= n; ++power) {
+		//	sum = sum + Math.pow(0.5, power);
+		//}
 		return sum;
 	}
 
@@ -26,12 +33,17 @@ public class IterativeMethods {
 	 * @return greatest common divisor of p and q
 	 */
 	public static int gcd(int p, int q) {
-		while (q != 0) {
+		if (p % q != 0 && p > 0 && q > 0)
+		{
+			System.out.println(p + " "+ q);
+			gcd(p, q-1);
+		}
+		/*while (q != 0) {
 			int temp = q;
 			q = p % q;
 			p = temp;
-		}
-		return p;
+		}*/
+		return q;
 	}
 
 	/**
@@ -53,4 +65,11 @@ public class IterativeMethods {
 		}
 		return reversed;
 	}
+	
+	public static void main(String[] args) {
+		//System.out.println(geometricSum(5));
+		//System.out.println(45%63);
+		System.out.println(gcd(45, 18));
+	}
+	
 }
